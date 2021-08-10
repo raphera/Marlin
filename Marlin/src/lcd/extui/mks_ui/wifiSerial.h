@@ -1,6 +1,10 @@
 /**
  * Marlin 3D Printer Firmware
+<<<<<<< HEAD
+ * Copyright (c) 2021 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+=======
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+>>>>>>> OficialRepo/2.0.x
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -21,20 +25,7 @@
  */
 #pragma once
 
-#include "tft_lvgl_configuration.h"
-
-#if ENABLED(MKS_WIFI_MODULE)
-
-#ifdef SERIAL_PORT_2
-  #error "SERIAL_PORT_2 must be disabled with TFT_LVGL_UI* and MKS_WIFI_MODULE."
-#endif
-
-#define WIFI_BAUDRATE          115200
-#define WIFI_UPLOAD_BAUDRATE  1958400
-#define USART_SAFE_INSERT
-
-#define WIFI_RX_BUF_SIZE  (1024+1)
-
+<<<<<<< HEAD
 #include <libmaple/libmaple_types.h>
 #include <libmaple/usart.h>
 #include <libmaple/libmaple.h>
@@ -42,10 +33,7 @@
 #include <libmaple/timer.h>
 #include <libmaple/ring_buffer.h>
 
-#define DEFINE_WFSERIAL(name, n)\
-  WifiSerial name(USART##n, \
-  BOARD_USART##n##_TX_PIN,  \
-  BOARD_USART##n##_RX_PIN)
+#define DEFINE_WFSERIAL(name, n) WifiSerial name(USART##n, BOARD_USART##n##_TX_PIN, BOARD_USART##n##_RX_PIN)
 
 class WifiSerial {
   public:
@@ -63,15 +51,15 @@ class WifiSerial {
     int write(uint8_t);
     inline void wifi_usart_irq(usart_reg_map *regs) {
       /* Handling RXNEIE and TXEIE interrupts.
-       * RXNE signifies availability of a byte in DR.
-       *
-       * See table 198 (sec 27.4, p809) in STM document RM0008 rev 15.
-       * We enable RXNEIE.
-       */
+      * RXNE signifies availability of a byte in DR.
+      *
+      * See table 198 (sec 27.4, p809) in STM document RM0008 rev 15.
+      * We enable RXNEIE.
+      */
       if ((regs->CR1 & USART_CR1_RXNEIE) && (regs->SR & USART_SR_RXNE)) {
         #ifdef USART_SAFE_INSERT
           /* If the buffer is full and the user defines USART_SAFE_INSERT,
-           * ignore new bytes. */
+          * ignore new bytes. */
           rb_safe_insert(this->usart_device->rb, (uint8)regs->DR);
         #else
           /* By default, push bytes around in the ring buffer. */
@@ -80,23 +68,38 @@ class WifiSerial {
       }
       /* TXE signifies readiness to send a byte to DR. */
       if ((regs->CR1 & USART_CR1_TXEIE) && (regs->SR & USART_SR_TXE)) {
-        if (!rb_is_empty(this->usart_device->wb))
-          regs->DR=rb_remove(this->usart_device->wb);
-        else
-          regs->CR1 &= ~((uint32)USART_CR1_TXEIE); // disable TXEIE
+          if (!rb_is_empty(this->usart_device->wb))
+              regs->DR=rb_remove(this->usart_device->wb);
+          else
+              regs->CR1 &= ~((uint32)USART_CR1_TXEIE); // disable TXEIE
       }
     }
-
     int wifi_rb_is_full();
-
     struct usart_dev *usart_device;
     private:
     uint8 tx_pin;
     uint8 rx_pin;
 };
+=======
+#ifdef SERIAL_PORT_2
+  #error "SERIAL_PORT_2 must be disabled with TFT_LVGL_UI* and MKS_WIFI_MODULE."
+#endif
+
+#define WIFI_BAUDRATE          115200
+#define WIFI_UPLOAD_BAUDRATE  1958400
+#define USART_SAFE_INSERT
+
+#define WIFI_RX_BUF_SIZE  (1024)
+#define WIFI_TX_BUF_SIZE  (64)
+
+#include "tft_lvgl_configuration.h"
+
+#ifdef __STM32F1__
+  #include "wifiSerial_STM32F1.h"
+#else
+  #include "wifiSerial_STM32.h"
+#endif
 
 extern WifiSerial WifiSerial1;
-
-#define WIFISERIAL  WifiSerial1
-
-#endif // MKS_WIFI_MODULE
+#define WIFISERIAL WifiSerial1
+>>>>>>> OficialRepo/2.0.x

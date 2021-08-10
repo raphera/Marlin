@@ -357,6 +357,7 @@ void menu_motion() {
       GCODES_ITEM(MSG_AUTO_HOME_Z, PSTR("G28Z"));
     #endif
     #if LINEAR_AXES >= 4
+<<<<<<< HEAD
       GCODES_ITEM(MSG_AUTO_HOME_I, PSTR("G28" I_STR));
     #endif
     #if LINEAR_AXES >= 5
@@ -364,6 +365,15 @@ void menu_motion() {
     #endif
     #if LINEAR_AXES >= 6
       GCODES_ITEM(MSG_AUTO_HOME_K, PSTR("G28" K_STR));
+=======
+      GCODES_ITEM(MSG_AUTO_HOME_I, PSTR("G28" AXIS4_STR));
+    #endif
+    #if LINEAR_AXES >= 5
+      GCODES_ITEM(MSG_AUTO_HOME_J, PSTR("G28" AXIS5_STR));
+    #endif
+    #if LINEAR_AXES >= 6
+      GCODES_ITEM(MSG_AUTO_HOME_K, PSTR("G28" AXIS6_STR));
+>>>>>>> OficialRepo/2.0.x
     #endif
   #endif
 
@@ -419,7 +429,7 @@ void menu_motion() {
   #endif
 
   #if ENABLED(LEVEL_BED_CORNERS) && DISABLED(LCD_BED_LEVELING)
-    SUBMENU(MSG_LEVEL_CORNERS, _lcd_level_bed_corners);
+    SUBMENU(MSG_BED_TRAMMING, _lcd_level_bed_corners);
   #endif
 
   #if ENABLED(Z_MIN_PROBE_REPEATABILITY_TEST)

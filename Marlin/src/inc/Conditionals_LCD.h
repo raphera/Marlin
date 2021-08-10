@@ -31,6 +31,11 @@
   #define MKS_MINI_12864
 #endif
 
+// MKS_MINI_12864_V3 is simply identical to FYSETC_MINI_12864_2_1
+#if ENABLED(MKS_MINI_12864_V3)
+  #define FYSETC_MINI_12864_2_1
+#endif
+
 /**
  * General Flags that may be set below by specific LCDs
  *
@@ -136,6 +141,13 @@
   #define IS_RRD_SC 1
   #define IS_U8GLIB_SSD1306
 
+#elif ENABLED(SAV_3DGLCD)
+
+  #ifdef U8GLIB_SSD1306
+    #define IS_U8GLIB_SSD1306
+  #endif
+  #define IS_NEWPANEL 1
+
 #elif ENABLED(FYSETC_242_OLED_12864)
 
   #define IS_RRD_SC 1
@@ -208,7 +220,7 @@
     #define LCD_PROGRESS_BAR
   #endif
   #if ENABLED(TFTGLCD_PANEL_I2C)
-    #define LCD_I2C_ADDRESS           0x27  // Must be equal to panel's I2C slave addres
+    #define LCD_I2C_ADDRESS           0x33  // Must be 0x33 for STM32 main boards and equal to panel's I2C slave addres
   #endif
   #define LCD_USE_I2C_BUZZER                // Enable buzzer on LCD, used for both I2C and SPI buses (LiquidTWI2 not required)
   #define STD_ENCODER_PULSES_PER_STEP 2
@@ -759,7 +771,7 @@
 #endif
 
 /**
- * Set flags for enabled probes
+ * Set a flag for any type of bed probe, including the paper-test
  */
 #if ANY(HAS_Z_SERVO_PROBE, FIX_MOUNTED_PROBE, NOZZLE_AS_PROBE, TOUCH_MI_PROBE, Z_PROBE_ALLEN_KEY, Z_PROBE_SLED, SOLENOID_PROBE, SENSORLESS_PROBING, RACK_AND_PINION_PROBE)
   #define HAS_BED_PROBE 1
@@ -899,9 +911,15 @@
     #define HAS_PROBE_XY_OFFSET 1
   #endif
   #if DISABLED(Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN) && !BOTH(DELTA, SENSORLESS_PROBING)
+<<<<<<< HEAD
     #define HAS_CUSTOM_PROBE_PIN 1
   #endif
   #if Z_HOME_TO_MIN && (!HAS_CUSTOM_PROBE_PIN || ENABLED(USE_PROBE_FOR_Z_HOMING))
+=======
+    #define USES_Z_MIN_PROBE_PIN 1
+  #endif
+  #if Z_HOME_TO_MIN && TERN1(USES_Z_MIN_PROBE_PIN, ENABLED(USE_PROBE_FOR_Z_HOMING))
+>>>>>>> OficialRepo/2.0.x
     #define HOMING_Z_WITH_PROBE 1
   #endif
   #ifndef Z_PROBE_LOW_POINT
@@ -1048,7 +1066,7 @@
 #endif
 
 // E jerk exists with JD disabled (of course) but also when Linear Advance is disabled on Delta/SCARA
-#if ENABLED(CLASSIC_JERK) || (IS_KINEMATIC && DISABLED(LIN_ADVANCE))
+#if HAS_EXTRUDERS && (ENABLED(CLASSIC_JERK) || (IS_KINEMATIC && DISABLED(LIN_ADVANCE)))
   #define HAS_CLASSIC_E_JERK 1
 #endif
 
@@ -1078,7 +1096,11 @@
 #if ENABLED(DWIN_CREALITY_LCD)
   #define SERIAL_CATCHALL 0
   #ifndef LCD_SERIAL_PORT
-    #define LCD_SERIAL_PORT 3 // Creality 4.x board
+    #if MB(BTT_SKR_MINI_E3_V1_0, BTT_SKR_MINI_E3_V1_2, BTT_SKR_MINI_E3_V2_0, BTT_SKR_E3_TURBO)
+      #define LCD_SERIAL_PORT 1
+    #else
+      #define LCD_SERIAL_PORT 3 // Creality 4.x board
+    #endif
   #endif
 #endif
 
@@ -1201,6 +1223,7 @@
   #define TFT_RES_480x320
   #define TFT_INTERFACE_FSMC
 #elif ENABLED(ANET_ET4_TFT28)       // ST7789
+<<<<<<< HEAD
   #define TFT_DEFAULT_ORIENTATION (TFT_EXCHANGE_XY | TFT_INVERT_Y)
   #define TFT_RES_320x240
   #define TFT_INTERFACE_FSMC
@@ -1216,6 +1239,23 @@
   #define TFT_DEFAULT_ORIENTATION (TFT_EXCHANGE_XY | TFT_INVERT_Y)
   #define TFT_RES_320x240
   #define TFT_INTERFACE_FSMC
+=======
+  #define TFT_DEFAULT_ORIENTATION (TFT_EXCHANGE_XY | TFT_INVERT_Y)
+  #define TFT_RES_320x240
+  #define TFT_INTERFACE_FSMC
+#elif ENABLED(MKS_ROBIN_TFT24)      // ST7789
+  #define TFT_DEFAULT_ORIENTATION (TFT_EXCHANGE_XY | TFT_INVERT_Y)
+  #define TFT_RES_320x240
+  #define TFT_INTERFACE_FSMC
+#elif ENABLED(MKS_ROBIN_TFT28)      // ST7789
+  #define TFT_DEFAULT_ORIENTATION (TFT_EXCHANGE_XY | TFT_INVERT_Y)
+  #define TFT_RES_320x240
+  #define TFT_INTERFACE_FSMC
+#elif ENABLED(MKS_ROBIN_TFT32)      // ST7789
+  #define TFT_DEFAULT_ORIENTATION (TFT_EXCHANGE_XY | TFT_INVERT_Y)
+  #define TFT_RES_320x240
+  #define TFT_INTERFACE_FSMC
+>>>>>>> OficialRepo/2.0.x
 #elif ENABLED(MKS_ROBIN_TFT35)      // ILI9488
   #define TFT_DEFAULT_ORIENTATION (TFT_EXCHANGE_XY | TFT_INVERT_X | TFT_INVERT_Y)
   #define TFT_RES_480x320

@@ -22,7 +22,11 @@
 
 #pragma once
 
+<<<<<<< HEAD:Marlin/src/lcd/extui/ftdi_eve_touch_ui/screens.h
 #include "compat.h"
+=======
+#include "config.h"
+>>>>>>> OficialRepo/2.0.x:Marlin/src/lcd/extui/lib/ftdi_eve_touch_ui/screens/cocoa_press_unload_cartridge.h
 
 #if ENABLED(TOUCH_UI_FTDI_EVE)
 
@@ -40,7 +44,11 @@ extern tiny_timer_t refresh_timer;
 #if ENABLED(TOUCH_UI_LULZBOT_BIO)
   #include "bioprinter/screens.h"
 #elif ENABLED(TOUCH_UI_COCOA_PRESS)
+<<<<<<< HEAD:Marlin/src/lcd/extui/ftdi_eve_touch_ui/screens.h
   #include "cocoapress/screens.h"
+=======
+  #include "cocoa_press/screens.h"
+>>>>>>> OficialRepo/2.0.x:Marlin/src/lcd/extui/lib/ftdi_eve_touch_ui/screens/cocoa_press_unload_cartridge.h
 #elif ENABLED(TOUCH_UI_SYNDAVER_LEVEL)
   #include "syndaver_level/screens.h"
 #else

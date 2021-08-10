@@ -624,7 +624,11 @@
     #define STATUS_AMMETER_X (LCD_PIXEL_WIDTH - (STATUS_AMMETER_BYTEWIDTH + STATUS_FLOWMETER_BYTEWIDTH + STATUS_FAN_BYTEWIDTH + STATUS_CUTTER_BYTEWIDTH + STATUS_COOLER_BYTEWIDTH) * 8)
   #endif
   #ifndef STATUS_AMMETER_HEIGHT
+<<<<<<< HEAD
     #define STATUS_AMMETER_HEIGHT(S) (sizeof(status_ammeter_bmp1) / (STATUS_AMMETER_BYTEWIDTH))
+=======
+    #define STATUS_AMMETER_HEIGHT(S) (sizeof(status_ammeter_bmp_mA) / (STATUS_AMMETER_BYTEWIDTH))
+>>>>>>> OficialRepo/2.0.x
   #endif
   #ifndef STATUS_AMMETER_Y
     #define STATUS_AMMETER_Y(S) (18 - STATUS_AMMETER_HEIGHT(S))
@@ -633,8 +637,13 @@
     #define STATUS_AMMETER_TEXT_X (STATUS_AMMETER_X + 7)
   #endif
   static_assert(
+<<<<<<< HEAD
     sizeof(status_ammeter_bmp1) == (STATUS_AMMETER_BYTEWIDTH) * STATUS_AMMETER_HEIGHT(0),
     "Status ammeter bitmap (status_ammeter_bmp1) dimensions don't match data."
+=======
+    sizeof(status_ammeter_bmp_mA) == (STATUS_AMMETER_BYTEWIDTH) * STATUS_AMMETER_HEIGHT(0),
+    "Status ammeter bitmap (status_ammeter_bmp_mA) dimensions don't match data."
+>>>>>>> OficialRepo/2.0.x
   );
 #endif
 

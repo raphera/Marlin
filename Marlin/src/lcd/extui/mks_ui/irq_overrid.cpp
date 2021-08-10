@@ -19,13 +19,17 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
+<<<<<<< HEAD:Marlin/src/lcd/extui/mks_ui/irq_overrid.cpp
+#include "../../../inc/MarlinConfigPre.h"
+=======
+#ifdef __STM32F1__
+>>>>>>> OficialRepo/2.0.x:Marlin/src/lcd/extui/lib/mks_ui/irq_overrid.cpp
+
 #include "../../../inc/MarlinConfigPre.h"
 
-#if HAS_TFT_LVGL_UI
+#if BOTH(HAS_TFT_LVGL_UI, MKS_WIFI_MODULE)
 
 #include "tft_lvgl_configuration.h"
-
-#if ENABLED(MKS_WIFI_MODULE)
 
 #include "draw_ui.h"
 #include "wifiSerial.h"
@@ -46,15 +50,15 @@
 #define WIFI_IO1_RESET()  WRITE(WIFI_IO1_PIN, LOW);
 
 void __irq_usart1() {
-   if ((USART1_BASE->CR1 & USART_CR1_RXNEIE) && (USART1_BASE->SR & USART_SR_RXNE))
-     WRITE(WIFI_IO1_PIN, HIGH);
+  if ((USART1_BASE->CR1 & USART_CR1_RXNEIE) && (USART1_BASE->SR & USART_SR_RXNE))
+    WRITE(WIFI_IO1_PIN, HIGH);
 
-   WIFISERIAL.wifi_usart_irq(USART1_BASE);
+  WIFISERIAL.wifi_usart_irq(USART1_BASE);
 }
 
 #ifdef __cplusplus
   } /* C-declarations for C++ */
 #endif
 
-#endif // MKS_WIFI_MODULE
-#endif // HAS_TFT_LVGL_UI
+#endif // HAS_TFT_LVGL_UI && MKS_WIFI_MODULE
+#endif // __STM32F1__

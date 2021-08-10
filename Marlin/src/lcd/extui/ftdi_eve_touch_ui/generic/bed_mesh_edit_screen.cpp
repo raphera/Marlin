@@ -136,7 +136,7 @@ void BedMeshEditScreen::drawHighlightedPointValue() {
   if (mydata.highlight.x != NONE)
     draw_adjuster(cmd, Z_VALUE_POS, 3, getHighlightedValue(), GET_TEXT_F(MSG_UNITS_MM), 4, 3);
   cmd.colors(mydata.needSave ? normal_btn : action_btn)
-     .tag(1).button(BACK_POS, GET_TEXT_F(MSG_BUTTON_BACK))
+     .tag(1).button(BACK_POS, GET_TEXT_F(MSG_BUTTON_DONE))
      .colors(mydata.needSave ? action_btn : normal_btn)
      .enabled(mydata.needSave)
      .tag(2).button(SAVE_POS, GET_TEXT_F(MSG_TOUCHMI_SAVE));
@@ -190,6 +190,7 @@ bool BedMeshEditScreen::onTouchEnd(uint8_t tag) {
 }
 
 void BedMeshEditScreen::show() {
+<<<<<<< HEAD:Marlin/src/lcd/extui/ftdi_eve_touch_ui/generic/bed_mesh_edit_screen.cpp
   // On entry, home if needed and save current mesh
   if (!ExtUI::isMachineHomed()) {
     SpinnerDialogBox::enqueueAndWait_P(F("G28\nG29 S1"));
@@ -201,6 +202,13 @@ void BedMeshEditScreen::show() {
     injectCommands_P(PSTR("G29 S1"));
     GOTO_SCREEN(BedMeshEditScreen);
   }
+=======
+  // On entry, always home (to account for possible Z offset changes) and save current mesh
+  SpinnerDialogBox::enqueueAndWait(F("G28\nG29 S1"));
+  // After the spinner, go to this screen.
+  current_screen.forget();
+  PUSH_SCREEN(BedMeshEditScreen);
+>>>>>>> OficialRepo/2.0.x:Marlin/src/lcd/extui/lib/ftdi_eve_touch_ui/screens/bed_mesh_edit_screen.cpp
 }
 
 #endif // FTDI_BED_MESH_EDIT_SCREEN

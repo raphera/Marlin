@@ -150,7 +150,11 @@ extern "C" {
 
 // PWM resolution
 //#define PWM_RESOLUTION          12
+<<<<<<< HEAD
 #define PWM_FREQUENCY           20000 // >= 20 Khz => inaudible noise for fans
+=======
+#define PWM_FREQUENCY           1000 // >= 20 Khz => inaudible noise for fans
+>>>>>>> OficialRepo/2.0.x
 #define PWM_MAX_DUTY_CYCLE      255
 
 // SPI Definitions

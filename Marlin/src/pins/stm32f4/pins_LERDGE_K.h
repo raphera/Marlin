@@ -182,12 +182,21 @@
 
 #ifndef E0_AUTO_FAN_PIN
   #define E0_AUTO_FAN_PIN                   PB1
+<<<<<<< HEAD
 #endif
 
 #ifndef E1_AUTO_FAN_PIN
   #define E1_AUTO_FAN_PIN                   PB0
 #endif
 
+=======
+#endif
+
+#ifndef E1_AUTO_FAN_PIN
+  #define E1_AUTO_FAN_PIN                   PB0
+#endif
+
+>>>>>>> OficialRepo/2.0.x
 #define CONTROLLER_FAN_PIN                  PF8
 
 //
@@ -230,9 +239,12 @@
 #define BEEPER_PIN                          PC7
 
 //
-// LCD / Controller
+// TFT with FSMC interface
 //
+#if HAS_FSMC_TFT
+  //#define TFT_DRIVER             LERDGE_ST7796
 
+<<<<<<< HEAD
 #if HAS_FSMC_TFT
   //#define TFT_DRIVER             LERDGE_ST7796
 
@@ -248,6 +260,20 @@
   #define TOUCH_MISO_PIN                    PB4
 #endif
 
+=======
+  #define TFT_RESET_PIN                     PD6
+  #define TFT_BACKLIGHT_PIN                 PD3
+
+  #define TFT_CS_PIN                        PD7
+  #define TFT_RS_PIN                        PD11
+
+  #define TOUCH_CS_PIN                      PG15
+  #define TOUCH_SCK_PIN                     PB3
+  #define TOUCH_MOSI_PIN                    PB5
+  #define TOUCH_MISO_PIN                    PB4
+#endif
+
+>>>>>>> OficialRepo/2.0.x
 #if IS_NEWPANEL
   #define BTN_EN1                           PG10
   #define BTN_EN2                           PG11

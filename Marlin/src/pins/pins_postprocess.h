@@ -1134,7 +1134,11 @@
   #define USE_ZMIN_PLUG
 #endif
 #undef _STOP_IN_USE
+<<<<<<< HEAD
 #if !HAS_CUSTOM_PROBE_PIN
+=======
+#if !USES_Z_MIN_PROBE_PIN
+>>>>>>> OficialRepo/2.0.x
   #undef Z_MIN_PROBE_PIN
   #define Z_MIN_PROBE_PIN    -1
 #endif

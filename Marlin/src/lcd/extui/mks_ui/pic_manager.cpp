@@ -27,11 +27,13 @@
 #include "draw_ui.h"
 #include "pic_manager.h"
 #include "draw_ready_print.h"
-#include "mks_hardware_test.h"
-
+#include "mks_hardware.h"
 #include "SPIFlashStorage.h"
 #include "../../../libs/W25Qxx.h"
+<<<<<<< HEAD:Marlin/src/lcd/extui/mks_ui/pic_manager.cpp
 
+=======
+>>>>>>> OficialRepo/2.0.x:Marlin/src/lcd/extui/lib/mks_ui/pic_manager.cpp
 #include "../../../sd/cardreader.h"
 #include "../../../MarlinCore.h"
 

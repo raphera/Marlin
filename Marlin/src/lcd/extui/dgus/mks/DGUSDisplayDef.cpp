@@ -35,7 +35,11 @@
 #include "../../ui_api.h"
 #include "../../../marlinui.h"
 
+<<<<<<< HEAD:Marlin/src/lcd/extui/dgus/mks/DGUSDisplayDef.cpp
 #if ENABLED(HAS_STEALTHCHOP)
+=======
+#if HAS_STEALTHCHOP
+>>>>>>> OficialRepo/2.0.x:Marlin/src/lcd/extui/lib/dgus/mks/DGUSDisplayDef.cpp
   #include "../../../../module/stepper/trinamic.h"
 #endif
 

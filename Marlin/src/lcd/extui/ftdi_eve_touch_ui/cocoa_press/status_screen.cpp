@@ -233,7 +233,7 @@ bool StatusScreen::onTouchStart(uint8_t) {
 
 bool StatusScreen::onTouchEnd(uint8_t tag) {
   switch (tag) {
-    case  1: SpinnerDialogBox::enqueueAndWait_P(F("G28 O\nG27")); break;
+    case  1: SpinnerDialogBox::enqueueAndWait(F("G28 O\nG27")); break;
     case  2: GOTO_SCREEN(LoadChocolateScreen); break;
     case  3: GOTO_SCREEN(PreheatMenu); break;
     case  4: GOTO_SCREEN(MainMenu); break;
@@ -294,4 +294,17 @@ void StatusScreen::onIdle() {
   }
 }
 
+<<<<<<< HEAD:Marlin/src/lcd/extui/ftdi_eve_touch_ui/cocoa_press/status_screen.cpp
+=======
+void StatusScreen::onMediaInserted() {
+  if (AT_SCREEN(StatusScreen))
+    setStatusMessage(GET_TEXT_F(MSG_MEDIA_INSERTED));
+}
+
+void StatusScreen::onMediaRemoved() {
+  if (AT_SCREEN(StatusScreen) || ExtUI::isPrintingFromMedia())
+    setStatusMessage(GET_TEXT_F(MSG_MEDIA_REMOVED));
+}
+
+>>>>>>> OficialRepo/2.0.x:Marlin/src/lcd/extui/lib/ftdi_eve_touch_ui/screens/cocoa_press_status_screen.cpp
 #endif // COCOA_STATUS_SCREEN

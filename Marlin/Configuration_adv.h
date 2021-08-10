@@ -30,7 +30,7 @@
  *
  * Basic settings can be found in Configuration.h
  */
-#define CONFIGURATION_ADV_H_VERSION 02000900
+#define CONFIGURATION_ADV_H_VERSION 02000901
 
 //===========================================================================
 //============================= Thermal Settings ============================
@@ -131,10 +131,21 @@
   #define REDUNDANT_BETA                   3950    // Beta value
 #endif
 
-//
-// Hephestos 2 24V heated bed upgrade kit.
-// https://store.bq.com/en/heated-bed-kit-hephestos2
-//
+/**
+ * Configuration options for MAX Thermocouples (-2, -3, -5).
+ *   FORCE_HW_SPI:   Ignore SCK/MOSI/MISO pins and just use the CS pin & default SPI bus.
+ *   MAX31865_WIRES: Set the number of wires for the probe connected to a MAX31865 board, 2-4. Default: 2
+ *   MAX31865_50HZ:  Enable 50Hz filter instead of the default 60Hz.
+ */
+//#define TEMP_SENSOR_FORCE_HW_SPI
+//#define MAX31865_SENSOR_WIRES_0 2
+//#define MAX31865_SENSOR_WIRES_1 2
+//#define MAX31865_50HZ_FILTER
+
+/**
+ * Hephestos 2 24V heated bed upgrade kit.
+ * https://store.bq.com/en/heated-bed-kit-hephestos2
+ */
 //#define HEPHESTOS2_HEATED_BED_KIT
 #if ENABLED(HEPHESTOS2_HEATED_BED_KIT)
   #undef TEMP_SENSOR_BED
@@ -1333,6 +1344,8 @@
 
   //#define MEDIA_MENU_AT_TOP               // Force the media menu to be listed on the top of the main menu
 
+  //#define MEDIA_MENU_AT_TOP               // Force the media menu to be listed on the top of the main menu
+
   #define EVENT_GCODE_SD_ABORT "G28XY"      // G-code to run on SD Abort Print (e.g., "G28XY" or "G27")
 
   #if ENABLED(PRINTER_EVENT_LEDS)
@@ -1989,9 +2002,9 @@
     // calibration.
     //#define BTC_PROBE_TEMP    30  // (°C)
 
-    // Height above Z=0.0f to raise the nozzle. Lowering this can help the probe to heat faster.
-    // Note: the Z=0.0f offset is determined by the probe offset which can be set using M851.
-    //#define PTC_PROBE_HEATING_OFFSET 0.5f
+    // Height above Z=0.0 to raise the nozzle. Lowering this can help the probe to heat faster.
+    // Note: the Z=0.0 offset is determined by the probe offset which can be set using M851.
+    //#define PTC_PROBE_HEATING_OFFSET 0.5
 
     // Height to raise the Z-probe between heating and taking the next measurement. Some probes
     // may fail to untrigger if they have been triggered for a long time, which can be solved by
@@ -2452,6 +2465,24 @@
     #define Z4_MAX_CURRENT    1000
     #define Z4_SENSE_RESISTOR   91
     #define Z4_MICROSTEPS       16
+  #endif
+
+  #if AXIS_DRIVER_TYPE_I(TMC26X)
+    #define I_MAX_CURRENT    1000
+    #define I_SENSE_RESISTOR   91
+    #define I_MICROSTEPS       16
+  #endif
+
+  #if AXIS_DRIVER_TYPE_J(TMC26X)
+    #define J_MAX_CURRENT    1000
+    #define J_SENSE_RESISTOR   91
+    #define J_MICROSTEPS       16
+  #endif
+
+  #if AXIS_DRIVER_TYPE_K(TMC26X)
+    #define K_MAX_CURRENT    1000
+    #define K_SENSE_RESISTOR   91
+    #define K_MICROSTEPS       16
   #endif
 
   #if AXIS_DRIVER_TYPE_I(TMC26X)
@@ -2985,6 +3016,33 @@
     #define Z4_MAX_VOLTAGE     127
     #define Z4_CHAIN_POS        -1
     #define Z4_SLEW_RATE         1
+  #endif
+
+  #if AXIS_DRIVER_TYPE_I(L6470)
+    #define I_MICROSTEPS      128
+    #define I_OVERCURRENT    2000
+    #define I_STALLCURRENT   1500
+    #define I_MAX_VOLTAGE     127
+    #define I_CHAIN_POS        -1
+    #define I_SLEW_RATE         1
+  #endif
+
+  #if AXIS_DRIVER_TYPE_J(L6470)
+    #define J_MICROSTEPS      128
+    #define J_OVERCURRENT    2000
+    #define J_STALLCURRENT   1500
+    #define J_MAX_VOLTAGE     127
+    #define J_CHAIN_POS        -1
+    #define J_SLEW_RATE         1
+  #endif
+
+  #if AXIS_DRIVER_TYPE_K(L6470)
+    #define K_MICROSTEPS      128
+    #define K_OVERCURRENT    2000
+    #define K_STALLCURRENT   1500
+    #define K_MAX_VOLTAGE     127
+    #define K_CHAIN_POS        -1
+    #define K_SLEW_RATE         1
   #endif
 
   #if AXIS_DRIVER_TYPE_I(L6470)

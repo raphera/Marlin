@@ -25,12 +25,15 @@
 
 #include "draw_ui.h"
 #include <lv_conf.h>
-
 #include "tft_lvgl_configuration.h"
-
 #include "SPI_TFT.h"
+<<<<<<< HEAD:Marlin/src/lcd/extui/mks_ui/draw_error_message.cpp
 #include "mks_hardware_test.h"
 #include "../../../inc/MarlinConfig.h"
+=======
+#include "../../../inc/MarlinConfig.h"
+#include "mks_hardware.h"
+>>>>>>> OficialRepo/2.0.x:Marlin/src/lcd/extui/lib/mks_ui/draw_error_message.cpp
 
 static lv_obj_t *scr;
 

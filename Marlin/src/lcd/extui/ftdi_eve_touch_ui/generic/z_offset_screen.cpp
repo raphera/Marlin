@@ -53,7 +53,11 @@ void ZOffsetScreen::onRedraw(draw_mode_t what) {
   w.heading(                  GET_TEXT_F(MSG_ZPROBE_ZOFFSET));
   w.color(z_axis).adjuster(4, GET_TEXT_F(MSG_ZPROBE_ZOFFSET), getZOffset_mm());
   w.increments();
+<<<<<<< HEAD:Marlin/src/lcd/extui/ftdi_eve_touch_ui/generic/z_offset_screen.cpp
   w.button(2, GET_TEXT_F(MSG_PROBE_WIZARD), !isPrinting());
+=======
+  w.button(2, GET_TEXT_F(MSG_PROBE_WIZARD), !isPrinting() && !wizardRunning());
+>>>>>>> OficialRepo/2.0.x:Marlin/src/lcd/extui/lib/ftdi_eve_touch_ui/screens/z_offset_screen.cpp
 }
 
 void ZOffsetScreen::move(float mm, int16_t steps) {
@@ -84,7 +88,14 @@ void ZOffsetScreen::runWizard() {
   strcat(cmd, str);
   injectCommands(cmd);
   // Show instructions for user.
-  AlertDialogBox::show(PSTR("After the printer finishes homing, adjust the Z Offset so that a sheet of paper can pass between the nozzle and bed with slight resistance."));
+  AlertDialogBox::show(F("After the printer finishes homing, adjust the Z Offset so that a sheet of paper can pass between the nozzle and bed with slight resistance."));
+}
+
+bool ZOffsetScreen::wizardRunning() {
+  // We can't store state after the call to the AlertBox, so
+  // check whether the current Z position equals mydata.z in order
+  // to know whether the user started the wizard.
+  return getAxisPosition_mm(Z) == mydata.z;
 }
 
 bool ZOffsetScreen::wizardRunning() {

@@ -260,10 +260,17 @@
         #endif
 
         case Z_AXIS:
+<<<<<<< HEAD
           TERN_(Z_HAS_STEALTCHOP, if (index < 2) TMC_SET_PWMTHRS(Z,Z));
           TERN_(Z2_HAS_STEALTCHOP, if (index == 0 || index == 2) TMC_SET_PWMTHRS(Z,Z2));
           TERN_(Z3_HAS_STEALTCHOP, if (index == 0 || index == 3) TMC_SET_PWMTHRS(Z,Z3));
           TERN_(Z4_HAS_STEALTCHOP, if (index == 0 || index == 4) TMC_SET_PWMTHRS(Z,Z4));
+=======
+          TERN_(Z_HAS_STEALTHCHOP, if (index < 2) TMC_SET_PWMTHRS(Z,Z));
+          TERN_(Z2_HAS_STEALTHCHOP, if (index == 0 || index == 2) TMC_SET_PWMTHRS(Z,Z2));
+          TERN_(Z3_HAS_STEALTHCHOP, if (index == 0 || index == 3) TMC_SET_PWMTHRS(Z,Z3));
+          TERN_(Z4_HAS_STEALTHCHOP, if (index == 0 || index == 4) TMC_SET_PWMTHRS(Z,Z4));
+>>>>>>> OficialRepo/2.0.x
           break;
         #if E_STEPPERS
           case E_AXIS: {

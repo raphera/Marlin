@@ -21,104 +21,17 @@
  */
 #pragma once
 
-#include "env_validate.h"
-
-/**
- * 2017 Victor Perez Marlin for stm32f1 test
- */
-
-#define BOARD_INFO_NAME      "Chitu3D"
-#define DEFAULT_MACHINE_NAME "STM32F103ZET6"
-
-#define BOARD_NO_NATIVE_USB
-
-#define DISABLE_JTAG
-
-//
-// EEPROM
-//
-
-#if NO_EEPROM_SELECTED
-  #define FLASH_EEPROM_EMULATION
-#endif
-
-#if ENABLED(FLASH_EEPROM_EMULATION)
-  // SoC Flash (framework-arduinoststm32-maple/STM32F1/libraries/EEPROM/EEPROM.h)
-  #define EEPROM_START_ADDRESS (0x8000000UL + (512 * 1024) - 2 * EEPROM_PAGE_SIZE)
-  #define EEPROM_PAGE_SIZE     (0x800U)           // 2KB, but will use 2x more (4KB)
-  #define MARLIN_EEPROM_SIZE    EEPROM_PAGE_SIZE
-#else
-  #define MARLIN_EEPROM_SIZE              0x800U  // On SD, Limit to 2KB, require this amount of RAM
-#endif
-
-//
-// Limit Switches
-//
-#define X_STOP_PIN                          PG10
-#define Y_STOP_PIN                          PA12
-#define Z_STOP_PIN                          PG9
-
-//
-// Steppers
-//
-#define X_ENABLE_PIN                        PC13
-#define X_STEP_PIN                          PE5
-#define X_DIR_PIN                           PE6
-
-#define Y_ENABLE_PIN                        PE4
-#define Y_STEP_PIN                          PE2
-#define Y_DIR_PIN                           PE3
-
-#define Z_ENABLE_PIN                        PE1
-#define Z_STEP_PIN                          PB9
-#define Z_DIR_PIN                           PE0
+#define BOARD_INFO_NAME "Chitu3D V6"
 
 #define Z2_ENABLE_PIN                       PF3
 #define Z2_STEP_PIN                         PF5
 #define Z2_DIR_PIN                          PF1
 
-#define E0_ENABLE_PIN                       PB8
-#define E0_STEP_PIN                         PB4
-#define E0_DIR_PIN                          PB5
-
-#define E1_ENABLE_PIN                       PG8
-#define E1_STEP_PIN                         PC7
-#define E1_DIR_PIN                          PC6
-
-//
-// Temperature Sensors
-//
-#define TEMP_0_PIN                          PA1   // TH1
-#define TEMP_BED_PIN                        PA0   // TB1
-
-//
-// Heaters
-//
-#define HEATER_0_PIN                        PG12  // HEATER1
-#define HEATER_BED_PIN                      PG11  // HOT BED
-//#define HEATER_BED_INVERTING              true
-
-//
-// Fans
-//
-#define CONTROLLER_FAN_PIN                  PD6   // BOARD FAN
-#define FAN_PIN                             PG13  // FAN
-#define FAN2_PIN                            PG14
-
-//
-// Misc
-//
-#define BEEPER_PIN                          PB0
-//#define LED_PIN                           PD3
-//#define POWER_LOSS_PIN                    PG2   // PG4 PW_DET
-
-#ifndef FIL_RUNOUT_PIN
-  #define FIL_RUNOUT_PIN                    PA15  // MT_DET
-#endif
 #ifndef FIL_RUNOUT2_PIN
   #define FIL_RUNOUT2_PIN                   PF13
 #endif
 
+<<<<<<< HEAD
 // SPI Flash
 #define HAS_SPI_FLASH                          1
 #if HAS_SPI_FLASH
@@ -183,3 +96,6 @@
 #define SD_DETECT_PIN                       -1    // PF0, but it isn't connected
 #define SDIO_CLOCK                       4500000
 #define SDIO_READ_RETRIES                     16
+=======
+#include "pins_CHITU3D_common.h"
+>>>>>>> OficialRepo/2.0.x

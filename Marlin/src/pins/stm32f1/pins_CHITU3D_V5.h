@@ -21,8 +21,9 @@
  */
 #pragma once
 
-#include "env_validate.h"
+#define BOARD_INFO_NAME "Chitu3D V5"
 
+<<<<<<< HEAD
 /**
  * 2017 Victor Perez Marlin for stm32f1 test
  */
@@ -160,11 +161,8 @@
 #define SD_MISO_PIN                         PB14
 #define SD_MOSI_PIN                         PB15
 #define SD_SS_PIN                           PB12
+=======
+#define Z_STOP_PIN                          PG9
+>>>>>>> OficialRepo/2.0.x
 
-//
-// SD Card
-//
-#define SDIO_SUPPORT
-#define SD_DETECT_PIN                       -1    // PF0, but it isn't connected
-#define SDIO_CLOCK                       4500000
-#define SDIO_READ_RETRIES                     16
+#include "pins_CHITU3D_common.h"

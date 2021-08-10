@@ -22,7 +22,11 @@
 
 #include "../../../../inc/MarlinConfigPre.h"
 
-#if ENABLED(DGUS_LCD_UI_HYPRECY)
+<<<<<<< HEAD
+#if ENABLED(DGUS_LCD_UI_FYSETC)
+=======
+#if ENABLED(DGUS_LCD_UI_HIPRECY)
+>>>>>>> OficialRepo/2.0.x
 
 #include "../DGUSScreenHandler.h"
 
@@ -41,6 +45,8 @@
 #endif
 
 #if ENABLED(SDSUPPORT)
+
+  static ExtUI::FileList filelist;
 
   void DGUSScreenHandler::DGUSLCD_SD_FileSelected(DGUS_VP_Variable &var, void *val_ptr) {
     uint16_t touched_nr = (int16_t)swap16(*(uint16_t*)val_ptr) + top_file;
@@ -83,7 +89,11 @@
 
       case 1: // Pause
 
+<<<<<<< HEAD
+        GotoScreen(DGUSLCD_SCREEN_SDPRINTMANIPULATION);
+=======
         GotoScreen(MKSLCD_SCREEN_PAUSE);
+>>>>>>> OficialRepo/2.0.x
         if (!ExtUI::isPrintingFromMediaPaused()) {
           ExtUI::pausePrint();
           //ExtUI::mks_pausePrint();
@@ -346,7 +356,11 @@ void DGUSScreenHandler::HandleManualMove(DGUS_VP_Variable &var, void *val_ptr) {
               thermalManager.setTargetHotend(e_temp, filament_data.extruder);
               break;
           #endif
+<<<<<<< HEAD
+          #if HAS_MULTI_EXTRUDER
+=======
           #if HOTENDS >= 2
+>>>>>>> OficialRepo/2.0.x
             case VP_E1_FILAMENT_LOAD_UNLOAD:
               filament_data.extruder = ExtUI::extruder_t::E1;
               thermalManager.setTargetHotend(e_temp, filament_data.extruder);
@@ -409,10 +423,26 @@ bool DGUSScreenHandler::loop() {
     if (!booted && TERN0(POWER_LOSS_RECOVERY, recovery.valid()))
       booted = true;
 
+<<<<<<< HEAD
+    if (!booted && ELAPSED(ms, BOOTSCREEN_TIMEOUT)) {
+      booted = true;
+
+      if (TERN0(POWER_LOSS_RECOVERY, recovery.valid()))
+        GotoScreen(DGUSLCD_SCREEN_POWER_LOSS);
+      else
+        GotoScreen(DGUSLCD_SCREEN_MAIN);
+    }
+
+=======
     if (!booted && ELAPSED(ms, TERN(USE_MKS_GREEN_UI, 1000, BOOTSCREEN_TIMEOUT)))
       booted = true;
+>>>>>>> OficialRepo/2.0.x
   #endif
   return IsScreenComplete();
 }
 
-#endif // DGUS_LCD_UI_HYPRECY
+<<<<<<< HEAD
+#endif // DGUS_LCD_UI_FYSETC
+=======
+#endif // DGUS_LCD_UI_HIPRECY
+>>>>>>> OficialRepo/2.0.x

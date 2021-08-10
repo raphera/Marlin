@@ -10,7 +10,11 @@ Import("env")
 env.AddPostAction(
 	join("$BUILD_DIR", "${PROGNAME}.elf"),
 	env.VerboseAction(" ".join([
+<<<<<<< HEAD
 		"$OBJCOPY", "-O ihex", "$TARGET", # TARGET=.pio/build/fysetc_STM32F1/firmware.elf
+=======
+		"$OBJCOPY", "-O ihex", "$TARGET",
+>>>>>>> OficialRepo/2.0.x
 		"\"" + join("$BUILD_DIR", "${PROGNAME}.hex") + "\"", # Note: $BUILD_DIR is a full path
 	]), "Building $TARGET"))
 

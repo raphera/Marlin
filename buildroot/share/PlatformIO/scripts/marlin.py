@@ -67,6 +67,7 @@ def encrypt_mks(source, target, env, new_name):
 
 def add_post_action(action):
 	env.AddPostAction(join("$BUILD_DIR", "${PROGNAME}.bin"), action);
+<<<<<<< HEAD
 
 # Apply customizations for a MKS Robin
 def prepare_robin(address, ldname, fwname):
@@ -75,3 +76,5 @@ def prepare_robin(address, ldname, fwname):
 	relocate_firmware(address)
 	custom_ld_script(ldname)
 	add_post_action(encrypt);
+=======
+>>>>>>> OficialRepo/2.0.x
