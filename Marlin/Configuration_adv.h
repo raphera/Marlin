@@ -1465,6 +1465,16 @@
 
 // @section lcd
 
+#define FSMC_GRAPHICAL_TFT
+#if ENABLED(FSMC_GRAPHICAL_TFT)
+  #define TFT_MARLINUI_COLOR 0xFFFF // White
+  #define TFT_MARLINBG_COLOR 0x0000 // Black
+  #define TFT_DISABLED_COLOR 0x0003 // Almost black
+  #define TFT_BTCANCEL_COLOR 0xF800 // Red
+  #define TFT_BTARROWS_COLOR 0xDEE6 // 11011 110111 00110 Yellow
+  #define TFT_BTOKMENU_COLOR 0x145F // 00010 100010 11111 Cyan
+#endif
+
 #if HAS_MANUAL_MOVE_MENU
 #define MANUAL_FEEDRATE              \
   {                                  \
@@ -2979,7 +2989,7 @@
 #if AXIS_IS_TMC_CONFIG(Z)
 #define Z_CURRENT 800
 #define Z_CURRENT_HOME Z_CURRENT
-#define Z_MICROSTEPS 64
+#define Z_MICROSTEPS 32
 #define Z_RSENSE 0.11
 #define Z_CHAIN_POS -1
 //#define Z_INTERPOLATE  true
@@ -3078,7 +3088,7 @@
 
 #if AXIS_IS_TMC_CONFIG(E0)
 #define E0_CURRENT 800
-#define E0_MICROSTEPS 64
+#define E0_MICROSTEPS 32
 #define E0_RSENSE 0.11
 #define E0_CHAIN_POS -1
 //#define E0_INTERPOLATE true
