@@ -63,14 +63,14 @@
 // Software serial
 //
 
-#define X_SERIAL_TX_PIN PA10
-#define X_SERIAL_RX_PIN PA10
+#define X_SERIAL_TX_PIN PC13
+#define X_SERIAL_RX_PIN PC13
 
-#define Y_SERIAL_TX_PIN PA9
-#define Y_SERIAL_RX_PIN PA9
+#define Y_SERIAL_TX_PIN PC13
+#define Y_SERIAL_RX_PIN PC13
 
-#define Z_SERIAL_TX_PIN PC7
-#define Z_SERIAL_RX_PIN PC7
+#define Z_SERIAL_TX_PIN PC13
+#define Z_SERIAL_RX_PIN PC13
 
 #define E0_SERIAL_TX_PIN PC13
 #define E0_SERIAL_RX_PIN PC13

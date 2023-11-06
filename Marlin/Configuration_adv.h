@@ -997,7 +997,7 @@
  *
  * Set the default state here, change with 'M401 S' or UI, use M500 to save, M502 to reset.
  */
-//#define BLTOUCH_HS_MODE true
+#define BLTOUCH_HS_MODE true
 
   #ifdef BLTOUCH_HS_MODE
     // The probe Z offset (M851 Z) is the height at which the probe triggers.
@@ -1174,8 +1174,8 @@
  *  X<1>         Set the given parameters only for the X axis.
  *  Y<1>         Set the given parameters only for the Y axis.
  */
-//#define INPUT_SHAPING_X
-//#define INPUT_SHAPING_Y
+#define INPUT_SHAPING_X
+#define INPUT_SHAPING_Y
 #if ANY(INPUT_SHAPING_X, INPUT_SHAPING_Y)
   #if ENABLED(INPUT_SHAPING_X)
     #define SHAPING_FREQ_X  40          // (Hz) The default dominant resonant frequency on the X axis.
@@ -1187,7 +1187,7 @@
   #endif
   //#define SHAPING_MIN_FREQ  20        // By default the minimum of the shaping frequencies. Override to affect SRAM usage.
   //#define SHAPING_MAX_STEPRATE 10000  // By default the maximum total step rate of the shaped axes. Override to affect SRAM usage.
-  //#define SHAPING_MENU                // Add a menu to the LCD to set shaping parameters.
+  #define SHAPING_MENU                // Add a menu to the LCD to set shaping parameters.
 #endif
 
 // @section motion
@@ -1492,7 +1492,7 @@
 //#define LCD_BACKLIGHT_TIMEOUT_MINS 1  // (minutes) Timeout before turning off the backlight
 
 #if HAS_BED_PROBE && ANY(HAS_MARLINUI_MENU, HAS_TFT_LVGL_UI)
-  //#define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
+  #define PROBE_OFFSET_WIZARD       // Add a Probe Z Offset calibration option to the LCD menu
   #if ENABLED(PROBE_OFFSET_WIZARD)
     /**
      * Enable to init the Probe Z-Offset when starting the Wizard.
@@ -1645,7 +1645,7 @@
   #if ENABLED(SET_INTERACTION_TIME)
     #define SHOW_INTERACTION_TIME         // Display time until next user interaction ('C' = filament change)
   #endif
-  //#define PRINT_PROGRESS_SHOW_DECIMALS  // Show/report progress with decimal digits, not all UIs support this
+  #define PRINT_PROGRESS_SHOW_DECIMALS  // Show/report progress with decimal digits, not all UIs support this
 
   #if ANY(HAS_MARLINUI_HD44780, IS_TFTGLCD_PANEL)
     //#define LCD_PROGRESS_BAR            // Show a progress bar on HD44780 LCDs for SD printing
@@ -1678,7 +1678,7 @@
 //#define SD_IGNORE_AT_STARTUP            // Don't mount the SD card when starting up
 //#define SDCARD_READONLY                 // Read-only SD card (to save over 2K of flash)
 
-//#define GCODE_REPEAT_MARKERS            // Enable G-code M808 to set repeat markers and do looping
+#define GCODE_REPEAT_MARKERS            // Enable G-code M808 to set repeat markers and do looping
 
 #define SD_PROCEDURE_DEPTH 1 // Increase if you need more nested M32 calls
 
@@ -1799,7 +1799,7 @@
 
 //#define SD_REPRINT_LAST_SELECTED_FILE // On print completion open the LCD Menu and select the same file
 
-//#define AUTO_REPORT_SD_STATUS         // Auto-report media status with 'M27 S<seconds>'
+#define AUTO_REPORT_SD_STATUS         // Auto-report media status with 'M27 S<seconds>'
 
 /**
  * Support for USB thumb drives using an Arduino USB Host Shield or
@@ -1863,7 +1863,7 @@
  * Use 'M503 C' to write the settings out to the SD Card as 'mc.zip'.
  * See docs/ConfigEmbedding.md for details on how to use 'mc-apply.py'.
  */
-#define CONFIGURATION_EMBEDDING
+//#define CONFIGURATION_EMBEDDING
 
 // Add an optimized binary file transfer mode, initiated with 'M28 B1'
 //#define BINARY_FILE_TRANSFER
@@ -2225,7 +2225,7 @@
  */
 #define BABYSTEPPING
 #if ENABLED(BABYSTEPPING)
-//#define EP_BABYSTEPPING                 // M293/M294 babystepping with EMERGENCY_PARSER support
+  #define EP_BABYSTEPPING                 // M293/M294 babystepping with EMERGENCY_PARSER support
 //#define BABYSTEP_WITHOUT_HOMING
 //#define BABYSTEP_ALWAYS_AVAILABLE       // Allow babystepping at all times (not just during movement)
 //#define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
@@ -2389,8 +2389,8 @@
  * For more details see https://marlinfw.org/docs/features/probe_temp_compensation.html
  */
 //#define PTC_PROBE    // Compensate based on probe temperature
-//#define PTC_BED      // Compensate based on bed temperature
-//#define PTC_HOTEND   // Compensate based on hotend temperature
+#define PTC_BED      // Compensate based on bed temperature
+#define PTC_HOTEND   // Compensate based on hotend temperature
 
 #if ANY(PTC_PROBE, PTC_BED, PTC_HOTEND)
 /**
@@ -2588,18 +2588,18 @@
 // For debug-echo: 128 bytes for the optimal speed.
 // Other output doesn't need to be that speedy.
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256]
-#define TX_BUFFER_SIZE 0
+#define TX_BUFFER_SIZE 256
 
 // Host Receive Buffer Size
 // Without XON/XOFF flow control (see SERIAL_XON_XOFF below) 32 bytes should be enough.
 // To use flow control, set this buffer size to at least 1024 bytes.
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
-//#define RX_BUFFER_SIZE 1024
+#define RX_BUFFER_SIZE 2048
 
 #if RX_BUFFER_SIZE >= 1024
 // Enable to have the controller send XON/XOFF control characters to
 // the host to signal the RX buffer is becoming full.
-//#define SERIAL_XON_XOFF
+  #define SERIAL_XON_XOFF
 #endif
 
 #if HAS_MEDIA
@@ -2616,7 +2616,7 @@
 // Dump an error to the serial port if the serial receive buffer overflows.
 // If you see these errors, increase the RX_BUFFER_SIZE value.
 // Not supported on all platforms.
-//#define RX_BUFFER_MONITOR
+#define RX_BUFFER_MONITOR
 
 /**
  * Emergency Command Parser
@@ -2934,7 +2934,7 @@
 #if AXIS_IS_TMC_CONFIG(X)
 #define X_CURRENT 700            // (mA) RMS current. Multiply by 1.414 for peak current.
 #define X_CURRENT_HOME X_CURRENT // (mA) RMS current for sensorless homing
-#define X_MICROSTEPS 64          // 0..256
+#define X_MICROSTEPS 32          // 0..256
 #define X_RSENSE 0.11     // Multiplied x1000 for TMC26X
 #define X_CHAIN_POS -1 // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
 //#define X_INTERPOLATE  true      // Enable to override 'INTERPOLATE' for the X axis
@@ -2954,7 +2954,7 @@
 #if AXIS_IS_TMC_CONFIG(Y)
 #define Y_CURRENT 700
 #define Y_CURRENT_HOME Y_CURRENT
-#define Y_MICROSTEPS 64
+#define Y_MICROSTEPS 32
 #define Y_RSENSE 0.11
 #define Y_CHAIN_POS -1
 //#define Y_INTERPOLATE  true
@@ -2974,7 +2974,7 @@
 #if AXIS_IS_TMC_CONFIG(Z)
 #define Z_CURRENT 800
 #define Z_CURRENT_HOME Z_CURRENT
-#define Z_MICROSTEPS 32
+#define Z_MICROSTEPS 16
 #define Z_RSENSE 0.11
 #define Z_CHAIN_POS -1
 //#define Z_INTERPOLATE  true
@@ -3073,7 +3073,7 @@
 
 #if AXIS_IS_TMC_CONFIG(E0)
 #define E0_CURRENT 800
-#define E0_MICROSTEPS 32
+#define E0_MICROSTEPS 16
 #define E0_RSENSE 0.11
 #define E0_CHAIN_POS -1
 //#define E0_INTERPOLATE true
@@ -3196,9 +3196,9 @@
  * Set *_SERIAL_TX_PIN and *_SERIAL_RX_PIN to match for all drivers
  * on the same serial port, either here or in your board's pins file.
  */
-//#define  X_SLAVE_ADDRESS 0
-//#define  Y_SLAVE_ADDRESS 0
-//#define  Z_SLAVE_ADDRESS 0
+#define  X_SLAVE_ADDRESS 0
+#define  Y_SLAVE_ADDRESS 1
+#define  Z_SLAVE_ADDRESS 2
 //#define X2_SLAVE_ADDRESS 0
 //#define Y2_SLAVE_ADDRESS 0
 //#define Z2_SLAVE_ADDRESS 0
@@ -3210,7 +3210,7 @@
 //#define  U_SLAVE_ADDRESS 0
 //#define  V_SLAVE_ADDRESS 0
 //#define  W_SLAVE_ADDRESS 0
-//#define E0_SLAVE_ADDRESS 0
+#define E0_SLAVE_ADDRESS 3
 //#define E1_SLAVE_ADDRESS 0
 //#define E2_SLAVE_ADDRESS 0
 //#define E3_SLAVE_ADDRESS 0
@@ -3798,9 +3798,9 @@
 /**
  * Auto-report position with M154 S<seconds>
  */
-//#define AUTO_REPORT_POSITION
+#define AUTO_REPORT_POSITION
 #if ENABLED(AUTO_REPORT_POSITION)
-  //#define AUTO_REPORT_REAL_POSITION // Auto-report the real position
+  #define AUTO_REPORT_REAL_POSITION // Auto-report the real position
 #endif
 
 /**
@@ -3808,7 +3808,7 @@
  */
 #define EXTENDED_CAPABILITIES_REPORT
 #if ENABLED(EXTENDED_CAPABILITIES_REPORT)
-//#define M115_GEOMETRY_REPORT
+  #define M115_GEOMETRY_REPORT
 #endif
 
 /**
@@ -4036,15 +4036,15 @@
  * Host Prompt Support enables Marlin to use the host for user prompts so
  * filament runout and other processes can be managed from the host side.
  */
-//#define HOST_ACTION_COMMANDS
+#define HOST_ACTION_COMMANDS
 #if ENABLED(HOST_ACTION_COMMANDS)
-//#define HOST_PAUSE_M76                // Tell the host to pause in response to M76
-//#define HOST_PROMPT_SUPPORT           // Initiate host prompts to get user feedback
+  #define HOST_PAUSE_M76                // Tell the host to pause in response to M76
+  #define HOST_PROMPT_SUPPORT           // Initiate host prompts to get user feedback
 #if ENABLED(HOST_PROMPT_SUPPORT)
-//#define HOST_STATUS_NOTIFICATIONS   // Send some status messages to the host as notifications
+  #define HOST_STATUS_NOTIFICATIONS   // Send some status messages to the host as notifications
 #endif
-//#define HOST_START_MENU_ITEM          // Add a menu item that tells the host to start
-//#define HOST_SHUTDOWN_MENU_ITEM       // Add a menu item that tells the host to shut down
+  #define HOST_START_MENU_ITEM          // Add a menu item that tells the host to start
+  #define HOST_SHUTDOWN_MENU_ITEM       // Add a menu item that tells the host to shut down
 #endif
 
 /**
